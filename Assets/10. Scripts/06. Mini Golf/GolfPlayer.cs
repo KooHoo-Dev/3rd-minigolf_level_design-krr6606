@@ -32,6 +32,7 @@ namespace Study3D.MiniGolf
             aimDirection.Normalize();
 
             bool canShoot = ball.IsStopped;
+            ball.LightBall(canShoot);
 
             if (canShoot)
             {

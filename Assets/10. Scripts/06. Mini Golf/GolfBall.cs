@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Study3D.MiniGolf
@@ -12,21 +12,25 @@ namespace Study3D.MiniGolf
         public float stopDelay = 0.3f;
         // 공을 다이나믹으로 사용하기 때문에 게임적 표현을
         // 회전 스피드에 제한을 활용하여 간접적으로 제어 합니다.
-        public float maxAngularSpeed = 150f;
+        public float maxAngularSpeed = 480f;
 
         private Rigidbody rBody;
         private Vector3 lastPosition; // 유저가 마지막으로 공을 건드린 위치
+        private Vector3 savePosition; // 마지막 세이브 포지션
         private Vector3 shotVelocity; // 공의 방향 * 세기가 연산되는 변수
         private bool shotRequested;
         private float slowTime;
 
+        Light BallLight;
         public bool IsStopped => (shotRequested == false) && slowTime >= stopDelay;
         
         private void Awake()
         {
             rBody = GetComponent<Rigidbody>();
+            BallLight = GetComponent<Light>();
             rBody.maxAngularVelocity = maxAngularSpeed;
             lastPosition = transform.position;
+            savePosition = transform.position + Vector3.up;
         }
 
         // 공의 물리를 사용할 예정이라 Update가 아닌 FixedUpdate를 사용합니다.
@@ -81,6 +85,29 @@ namespace Study3D.MiniGolf
         {
             lastPosition = position;
             Teleport(position);
+        }
+        public void LightBall(bool isOn)
+        {
+            BallLight.enabled = isOn;
+        }
+        public void SavePosition(Vector3 position)
+        {
+            savePosition = position;
+        }
+        public void RestorePosition()
+        {
+            Teleport(savePosition);
+        }
+        public void Boost(float boostForce, Vector3 direction)
+        {
+            StopBall();
+            rBody.AddForce(direction.normalized * boostForce, ForceMode.VelocityChange);
+            Debug.Log($"Boosted with force: {boostForce} in direction: {direction}");
+        }
+        public void StopBall()
+        {
+            rBody.angularVelocity = Vector3.zero;
+            rBody.linearVelocity = Vector3.zero;
         }
     }
 }

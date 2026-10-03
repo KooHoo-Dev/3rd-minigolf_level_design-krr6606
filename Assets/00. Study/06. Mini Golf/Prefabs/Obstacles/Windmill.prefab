@@ -583,7 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393927226482527659}
   - component: {fileID: 8576352009071548736}
-  - component: {fileID: 3110602306136540490}
+  - component: {fileID: 4808264430632255598}
   m_Layer: 0
   m_Name: Rotor
   m_TagString: Untagged
@@ -636,7 +636,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &3110602306136540490
+--- !u!114 &4808264430632255598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -645,11 +645,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7946614707606418674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d21efdaa1275194cb28be57c27bfcc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2671404a27bc0c04c8f03bd70b3bf66b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Study3D.MiniGolf.KinematicSpinner
-  axis: {x: 0, y: 0, z: 1}
-  degreesPerSecond: 60
+  m_EditorClassIdentifier: Assembly-CSharp::KInematicSpinner
 --- !u!1 &8961787655738657395
 GameObject:
   m_ObjectHideFlags: 0
